@@ -219,7 +219,6 @@ _esprcov2pycov(int ninputs, int noutputs, set_family_t *F)
         for (i = 0; i < noutputs; i++) {
             pylong = PyLong_FromLong((long) GETOUTPUT(p, i));
             if (PyTuple_SetItem(pyouts, i, pylong) < 0) {
-                Py_DECREF(pylong);
                 goto decref_pyins_pyouts;
             }
         }
@@ -233,7 +232,6 @@ _esprcov2pycov(int ninputs, int noutputs, set_family_t *F)
         }
         if (PyTuple_SetItem(pyimpl, 1, pyouts) < 0) {
             Py_DECREF(pyimpl);
-            Py_DECREF(pyouts);
             goto decref_pyset;
         }
         if (PySet_Add(pyset, pyimpl) < 0) {
