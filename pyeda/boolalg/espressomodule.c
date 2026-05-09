@@ -205,7 +205,6 @@ _esprcov2pycov(int ninputs, int noutputs, set_family_t *F)
         for (i = 0; i < ninputs; i++) {
             pylong = PyLong_FromLong((long) GETINPUT(p, i));
             if (PyTuple_SetItem(pyins, i, pylong) < 0) {
-                Py_DECREF(pylong);
                 Py_DECREF(pyins);
                 goto decref_pyset;
             }
